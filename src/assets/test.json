@@ -1,0 +1,17 @@
+[
+    {"name":"dress",  "price":"5000", "qty":"5"},
+    {"name":"bottle", "price":"150", "qty":"11"},
+    {"name":"pen", 	 "price":"50", "qty":"23"},
+    {"name":"laptop", "price":"40000", "qty":"34"},
+    {"name":"marker", "price":"21", "qty":"43"},
+    {"name":"bike",   "price":"43000", "qty":"11"},
+    {"name":"book",   "price":"190", "qty":"9"},
+    {"name":"mouse",  "price":"300", "qty":"23"},
+    {"name":"watch",  "price":"3211", "qty":"12"},
+    {"name":"mobile", "price":"4500", "qty":"12"},
+    {"name":"battery", "price":"2300", "qty":"12"},
+    {"name":"software", "price":"1200", "qty":"44"},
+    {"name":"hardware", "price":"1000", "qty":"51"},
+    {"name":"banana", "price":"35", "qty":"52"},
+    {"name":"milk", "price":"25", "qty":"59"}
+ ]

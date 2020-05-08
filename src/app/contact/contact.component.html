@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+      <h3 class="text-center"> Form Validation Example </h3>
+      <form [formGroup]="myform" (ngSubmit)="savemydata()">
+
+          <div class="form-group">
+            <label> Full Name </label>
+            <input type="text" class="form-control input-sm" formControlName="fname">
+            <div *ngIf="submitted && myform.controls.fname.errors">
+                <div *ngIf="myform.controls.fname.errors.required">
+                  <i class="text-danger">Please Enter Your Full Name</i>
+                </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label> Email </label>
+            <input type="email" class="form-control input-sm" formControlName="emailid">
+            <div *ngIf="submitted && myform.controls.emailid.errors">
+              <div *ngIf="myform.controls.emailid.errors.required">
+                <i class="text-danger">Please enter your email</i>
+              </div>
+
+              <div *ngIf="myform.controls.emailid.errors.email">
+                <i class="text-danger">Email should follow pattern</i>
+              </div>
+             </div>
+          </div>
+
+          <div class="form-group">
+            <label> password </label>
+            <input type="password" class="form-control input-sm" formControlName="pass">
+            <div *ngIf="submitted && myform.controls.pass.errors">
+              <div *ngIf="myform.controls.pass.errors.required">
+                <i class="text-danger">Please enter password</i>
+              </div>
+
+              <div *ngIf="myform.controls.pass.errors.minlength">
+                <i class="text-danger">password min length 6 char</i>
+              </div>
+             </div>
+          </div>
+
+          <div class="form-group">
+              <label> Gender : </label>
+              <input type="radio" value="Male" name="gender"  formControlName="gender">Male
+              <input type="radio" value="Female" name="gender"  formControlName="gender">Female
+              <div *ngIf="submitted && myform.controls.gender.errors">
+                  <div *ngIf="myform.controls.gender.errors.required">
+                    <i class="text-danger">Please Enter Gender</i>
+                  </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label> City </label>
+        
+                <select  class="form-control input-sm" formControlName="city">
+                  <option value="mumbai">Mumbai</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Chhenai">Chhenai</option>
+                </select>
+                <div *ngIf="submitted && myform.controls.city.errors">
+                    <div *ngIf="myform.controls.city.errors.required">
+                      <i class="text-danger">Please Enter Your City</i>
+                    </div>
+                </div>
+              </div> 
+              
+              <div class="form-group">
+                  <label> Address </label>
+                  <input type="text" class="form-control input-sm" formControlName="address">
+                  <div *ngIf="submitted && myform.controls.address.errors">
+                      <div *ngIf="myform.controls.address.errors.required">
+                        <i class="text-danger">Please Enter Your address</i>
+                      </div>
+                  </div>
+                </div>
+
+            <div class="form-group">
+                <label> Terms and Condition : </label>
+                <input type="checkbox" value="yes" name="tnc"  formControlName="tnc">
+                I am agree
+                <div *ngIf="submitted && myform.controls.tnc.errors">
+                    <div *ngIf="myform.controls.tnc.errors.required">
+                      <i class="text-danger">This field is required</i>
+                    </div>
+                </div>
+              </div>
+
+          <div class="form-group text-center">
+            <button class="btn btn-primary"> Submit </button>
+          </div>
+      </form>
+  </div><!--6end here-->
+  <div class="col-sm-3"></div>
+</div>

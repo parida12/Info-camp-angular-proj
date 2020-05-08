@@ -1,0 +1,49 @@
+<div class="row">
+ 
+
+
+  <div class="col-sm-12">
+    <table class="table table-bordered">
+      <caption class="text-center">
+        <div class="row">
+          <div class="col-sm-8">{{msg}}</div>
+          <div class="col-sm-4">
+            <input type="text" class="form-control input-sm" placeholder="search here.." [(ngModel)]="searchkey">
+          </div>
+        </div>
+      </caption>
+
+      <tr>
+        <th (click)="sort('name')">Name:
+            <span class="glyphicon sort-icon" *ngIf="sortkey =='name'"
+            [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+         
+        </th>
+        <th (click)="sort('price')">Price :
+          <span class="glyphicon sort-icon" *ngIf="sortkey =='price'"
+          [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('qty')">Quantity :
+          <span class="glyphicon sort-icon" *ngIf="sortkey =='qty'"
+          [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+      
+      </tr>
+
+      <tr *ngFor="let row of myjsondata | orderBy: sortkey : reverse | filter:searchkey | paginate:{itemsPerPage:5, currentPage:p};let i=index;">
+        <td>{{row.name}}</td>
+        <td>{{row.price}}</td>
+        <td>{{row.qty}}</td>
+
+      </tr>
+
+    </table>
+     <div class="row">
+       <div class="col-sm-12 text-center">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls><!--predefined Directive -->
+       </div>
+     </div>
+
+  </div>
+  </div>
+

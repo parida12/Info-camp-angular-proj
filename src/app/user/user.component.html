@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="col-sm-3 well">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control input-sm" #name>
+    </div>
+
+    <div class="form-group">
+        <label>e-Mail</label>
+        <input type="text" class="form-control input-sm" #email>
+      </div>
+
+      <div class="form-group">
+          <label>Mobile</label>
+          <input type="text" class="form-control input-sm" #mobile>
+        </div>
+
+        <div class="form-group">
+            <label>Message</label>
+            <textarea type="text" class="form-control input-sm" #message></textarea>
+            
+          </div>
+          <div class="form-group text-center">
+              <button class="btn btn-primary" (click)="saveuser(name.value,email.value,mobile.value,message.value)">Submit</button>
+            </div>
+  </div>
+
+  <div class="col-sm-9">
+    <table class="table table-bordered">
+      <!--Search starts here-->
+      <caption class="text-center">
+        <div class="row">
+          <div class="col-sm-8">{{msg}}</div>
+          <div class="col-sm-4">
+            <input type="text" class="form-control input-sm" placeholder="search here.." [(ngModel)]="searchkey">
+          </div>
+        </div>
+      </caption>
+      <!--Search ends here-->
+
+      <tr>
+        <th (click)="sort('id')">ID:
+            <span class="glyphicon sort-icon" *ngIf="sortkey =='id'"
+            [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+         
+        </th>
+        <th (click)="sort('name')">Name :
+          <span class="glyphicon sort-icon" *ngIf="sortkey =='name'"
+          [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('email')">e-Mail :
+          <span class="glyphicon sort-icon" *ngIf="sortkey =='email'"
+          [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('mobile')">Mobile :
+          <span class="glyphicon sort-icon" *ngIf="sortkey =='mobile'"
+          [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('message')">Message :
+          <span class="glyphicon sort-icon" *ngIf="sortkey =='message'"
+          [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th>Action :</th>
+      </tr>
+
+      <tr *ngFor="let row of alluser | orderBy: sortkey : reverse | filter:searchkey | paginate:{itemsPerPage:5, currentPage:p};let i=index;">
+        <td>{{row.id}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.mobile}}</td>
+        <td>{{row.email}}</td>
+        <td>{{row.message}}</td>
+        <td class="text-center">
+          <button class="btn btn-danger btn-sm" (click)="deluser(row.id)">
+            <i class="glyphicon glyphicon-trash"></i>
+          </button>&nbsp;
+          <button data-toggle="modal" data-target="#edituser"class="btn btn-warning btn-sm" (click)="edituser(i)">
+            <i class="glyphicon glyphicon-edit"></i>
+          </button>
+        </td>
+      </tr>
+
+    </table>
+    
+     <div class="row">
+       <div class="col-sm-12 text-center">
+         <pagination-controls (pageChange)="p=$event"></pagination-controls> <!--predefined Directive -->
+       </div>
+     </div><!--Pagination-->
+
+  </div>
+  </div>
+
+  <!--modal start-->
+<div class="modal fade" id="edituser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Contact</h4>
+      </div>
+      <div class="modal-body">
+          
+         <div class="form-group">
+           <label>Full Name</label>
+           <input type="text" class="form-control input-sm" value="{{ename}}" #name2>
+         </div>
+         <div class="form-group">
+            <label>e-Mail</label>
+            <input type="text" class="form-control input-sm" value="{{eemail}}" #email2>
+          </div>
+          <div class="form-group">
+              <label>Mobile</label>
+              <input type="text" class="form-control input-sm" value="{{emobile}}" #mobile2>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea type="text" class="form-control input-sm" #message2 >{{emessage}}</textarea><br>
+                <input type="hidden" value="{{userid}}" #userid>
+              </div>  
+      </div><!--modal body end-->
+      <div class="modal-footer bg-success">
+        <div class="text-center">
+          <button class="btn btn-primary" (click)="updateuser(name2.value,email2.value,mobile2.value,message2.value,userid.value)">Update Contact</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

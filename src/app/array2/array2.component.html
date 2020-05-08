@@ -1,0 +1,40 @@
+<p>
+  array2 works!
+</p>
+<p>{{name}}</p>
+<p>{{name.length}}</p>
+<p>{{greet()}}</p>
+<p [innerHTML]='name'></p>
+<input disabled="{{x}}"  value="property"><br>
+<input [disabled]="false" type="text" value="property">
+
+<p class="orange">hello</p>
+<p [class]="redclass">hi</p>
+<p [ngClass]="bindclass">hello angular </p>
+
+<p [style.color]="highlight">Angular</p>
+<p [ngStyle]="stylebind">Angular basic</p>
+<p [style.color]="trueclass ? 'red' : 'blue'">Angular basic</p>
+
+<button (click)="f1($event)">click</button>
+<button (click)="onClick()">click</button>
+
+<input [(ngModel)]="name1" type="text">{{name1}}
+
+<input #myin type="text">
+<button (click)="log(myin.value)">Log</button>
+<p *ngIf="falseclass; else elseblock">hello</p>
+<ng-template #elseblock>
+  <p>hi</p>
+</ng-template>
+
+<div [ngSwitch]="color">
+  <div *ngSwitchCase="red">red color u picked</div>
+  <div *ngSwitchCase="blue">blue color</div>
+  <div *ngSwitchCase="pink">pink color</div>
+</div>
+
+<div *ngFor="let x of car;index as i;fast as f">{{i}}--{{f}}----{{x}}</div>
+<div *ngFor="let x of emp">{{x.name}}--{{x.city}}--{{x.age}}</div>
+
+
